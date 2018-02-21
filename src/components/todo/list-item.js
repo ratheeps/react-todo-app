@@ -44,7 +44,7 @@ export default class TodoListItem extends React.Component {
 
         return (
             <td style={taskStyle}>
-                <div class="toggle">
+                <div className="toggle">
                     <input
                         name="isSuccess"
                         type="checkbox"
