@@ -31,6 +31,7 @@ class LoginPage extends React.Component {
         this.setState({ submitted: true });
         const { username, password } = this.state;
         const { dispatch } = this.props;
+        console.log(2222, username, password)
         if (username && password) {
             dispatch(userActions.login(username, password));
         }
@@ -45,18 +46,12 @@ class LoginPage extends React.Component {
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={(submitted && !username ? ' has-error' : '')}>
                         <input type="text" placeholder="Username" name="username" value={username} onChange={this.handleChange} />
-                        {submitted && !username &&
-                            <div className="help-block">Username is required</div>
-                        }
                     </div>
                     <div className={ (submitted && !password ? ' has-error' : '')}>
                         <input type="password" placeholder="Password"  name="password" value={password} onChange={this.handleChange} />
-                        {submitted && !password &&
-                            <div className="help-block">Password is required</div>
-                        }
                     </div>
                     <div>
-                        <button type="button">Login</button>
+                        <button type="submit">Login</button>
                     </div>
                 </form>
             </div>
