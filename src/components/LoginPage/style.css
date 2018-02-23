@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Pacifico');
+body {
+    background: #009688;
+}
+
+.form{
+    margin: auto;
+    width: 250px;
+    position: relative;
+    top: 100px;
+    background: white;
+    border-radius: 5px;
+    padding: 5px 20px 20px 20px;
+}
+
+.form .title{
+    text-align: center;
+    font-size: 35px;
+}
+
+.form input{
+    width: 230px;
+    height: 25px;
+    margin: 2px;
+    padding: 3px 5px;
+    font-size: 14px;
+    border: none;
+    background-color: #e1e1e1;
+    border-radius: 4px;
+}
+
+.form input:focus{
+    border: none;
+    background-color: #ecf0f1;
+}
+
+.form button{
+    width: 240px;
+    height: 30px;
+    margin: 2px;
+    padding: 2px 6px;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: #57de72;
+    border: none;
+}
+
+.form button:hover{
+    background-color: #009688;
+}
+
+.form .help-block{
+    color: deeppink;
+}
+
+.form .has-error input{
+    border: 1px deeppink solid;
+    color: deeppink;
+}
