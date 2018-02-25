@@ -1,8 +1,9 @@
 import React from "react";
-import TodoList from "./list"
-import CreateTodo from "./create";
+import ToDoList from "./ToDoList"
+import CreateToDo from "./CreateToDo";
 import style from "./style.css";
-
+import {connect} from 'react-redux';
+import {TaskActions, UserActions} from '../../actions';
 const todos = {
     items: [],
     lsKey: "todos",
@@ -41,9 +42,10 @@ const todos = {
 todos.populate();
 
 
-export default class App extends React.Component {
+class ToDoPage extends React.Component {
     constructor (props) {
         super(props);
+        this.props.dispatch(TaskActions.index());
         this.state = {
             todos: todos.items
         };
@@ -52,10 +54,10 @@ export default class App extends React.Component {
         return (
             <div className="container">
                 <h1>TODOs</h1>
-                <CreateTodo
+                <CreateToDo
                     createTask={this.createTask.bind(this)}
                 />
-                <TodoList
+                <ToDoList
                     todos={this.state.todos}
                     toggleTask={this.toggleTask.bind(this)}
                     editTask={this.editTask.bind(this)}
@@ -88,3 +90,14 @@ export default class App extends React.Component {
         this.setState({ todos: this.state.todos });
     }
 }
+
+
+function mapStateToProps(state) {
+    const {tasks} = state.tasks;
+    return {
+        tasks
+    };
+}
+
+const connectedToDoPage = connect(mapStateToProps)(ToDoPage);
+export {connectedToDoPage as ToDoPage};

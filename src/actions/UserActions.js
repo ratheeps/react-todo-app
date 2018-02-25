@@ -1,9 +1,9 @@
-import { userConstants } from '../constants';
-import { userService } from '../services';
-import { alertActions } from './AlertActions';
+import { UserConstants } from '../constants';
+import { UserService } from '../services';
+import { AlertActions } from './AlertActions';
 import { history } from '../helpers';
 
-export const userActions = {
+export const UserActions = {
     login,
     logout,
 };
@@ -11,7 +11,7 @@ export const userActions = {
 function login(username, password) {
     return dispatch => {
         dispatch(request({ username }));
-        userService.login(username, password)
+        UserService.login(username, password)
             .then(
                 user => { 
                     dispatch(success(user));
@@ -19,17 +19,17 @@ function login(username, password) {
                 },
                 error => {
                     dispatch(failure(error));
-                    dispatch(alertActions.error(error));
+                    dispatch(AlertActions.error(error));
                 }
             );
     };
 
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+    function request(user) { return { type: UserConstants.LOGIN_REQUEST, user } }
+    function success(user) { return { type: UserConstants.LOGIN_SUCCESS, user } }
+    function failure(error) { return { type: UserConstants.LOGIN_FAILURE, error } }
 }
 
 function logout() {
-    userService.logout();
-    return { type: userConstants.LOGOUT };
+    UserService.logout();
+    return { type: UserConstants.LOGOUT };
 }

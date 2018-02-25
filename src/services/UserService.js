@@ -1,5 +1,5 @@
 import {API_URL, CLIENT_SECRET, GRAND_TYPE, CLIENT_ID } from '../config';
-export const userService = {
+export const UserService = {
     login,
     logout,
 };

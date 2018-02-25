@@ -1,10 +1,11 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 
-import { authentication } from './AuthenticationReducer';
-
+import {authentication} from './AuthenticationReducer';
+import {tasks} from './TaskReducer';
 
 const rootReducer = combineReducers({
-  authentication,
+    authentication,
+    tasks,
 });
 
 export default rootReducer;
