@@ -1,3 +1,4 @@
+import {API_URL, CLIENT_SECRET, GRAND_TYPE, CLIENT_ID } from '../config';
 export const userService = {
     login,
     logout,
@@ -7,24 +8,30 @@ function login(username, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({
+            username : username,
+            password : password,
+            grant_type : GRAND_TYPE,
+            client_id : CLIENT_ID,
+            client_secret : CLIENT_SECRET,
+        })
     };
-
-    return fetch('/oauth/token', requestOptions)
+    let AppUrl = API_URL+'/oauth/token';
+    return fetch(AppUrl, requestOptions)
         .then(response => {
-            if (!response.ok) { 
+            if (!response && !response.access_token) {
                 return Promise.reject(response.statusText);
             }
             return response.json();
         })
-        .then(user => {
-            if (user && user.token) {
-                localStorage.setItem('user', JSON.stringify(user));
+        .then(response => {
+            if (response && response.access_token) {
+                localStorage.setItem('uid', response.access_token);
             }
-            return user;
+            return response;
         });
 }
 
 function logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('uid');
 }
