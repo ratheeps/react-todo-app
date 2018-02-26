@@ -74,15 +74,7 @@ class ToDoPage extends React.Component {
     }
 
     createTask(task) {
-        task = task.trim();
-        if (!task) {
-            return;
-        }
-        task.add({
-            task,
-            isCompleted: false
-        });
-        this.setState({tasks: this.state.tasks});
+        this.props.createTask(task);
     }
 
     toggleTask(taskId) {
@@ -111,6 +103,9 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => ({
     loadTasks() {
         return dispatch(TaskActions.index());
+    },
+    createTask(task) {
+        return dispatch(TaskActions.create(task))
     }
 });
 

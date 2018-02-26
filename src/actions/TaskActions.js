@@ -5,7 +5,7 @@ import { history } from '../helpers';
 
 export const TaskActions = {
     index,
-    // create,
+    create,
     // update,
     // delete,
 };
@@ -24,8 +24,25 @@ function index() {
                 }
             );
     };
-
-    function request(tasks) { return { type: TaskConstants.INDEX_REQUEST, tasks } }
     function success(tasks) { return { type: TaskConstants.INDEX_SUCCESS, tasks } }
     function failure(error) { return { type: TaskConstants.INDEX_FAILURE, error } }
+}
+
+
+function create(task) {
+    return dispatch => {
+        TaskService.create(task)
+            .then(
+                task => {
+                    dispatch(success(task));
+                },
+                error => {
+                    dispatch(failure(error));
+                    dispatch(AlertActions.error(error));
+                }
+            );
+    };
+
+    function success(tasks) { return { type: TaskConstants.CREATED_SUCCESS, tasks } }
+    function failure(error) { return { type: TaskConstants.CREATED_FAILURE, error } }
 }
