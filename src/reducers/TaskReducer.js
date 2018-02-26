@@ -18,7 +18,6 @@ export function tasks(state = initialState, action) {
         case TaskConstants.CREATE_REQUEST:
             return state;
         case TaskConstants.CREATED_SUCCESS:
-            console.log(33, action);
             state.all.push(action.task);
             return {
                 ...state,

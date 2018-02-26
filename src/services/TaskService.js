@@ -3,7 +3,8 @@ import {API_URL, CLIENT_ID, CLIENT_SECRET, GRAND_TYPE} from '../config';
 
 export const TaskService = {
     index,
-    create
+    create,
+    remove
 };
 
 let accessToken = localStorage.getItem('uid');
@@ -37,6 +38,22 @@ function create(task) {
     return fetch(taskUrl, requestOptions).then((response) => response.json())
         .then((responseJson) => {
             return Promise.resolve(responseJson);
+        })
+        .catch((error) => {
+            return Promise.reject(error);
+        });
+}
+
+function remove(task) {
+    const requestOptions = {
+        method: 'delete',
+        headers: authHeader,
+    };
+    console.log(requestOptions);
+    taskUrl = taskUrl + '/' + task.id;
+    return fetch(taskUrl, requestOptions).then((response) => response.json())
+        .then((responseJson) => {
+            return Promise.resolve(task);
         })
         .catch((error) => {
             return Promise.reject(error);

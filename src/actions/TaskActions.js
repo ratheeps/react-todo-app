@@ -7,7 +7,7 @@ export const TaskActions = {
     index,
     create,
     // update,
-    // delete,
+    remove,
 };
 
 function index() {
@@ -32,6 +32,25 @@ function index() {
 function create(task) {
     return dispatch => {
         TaskService.create(task)
+            .then(
+                task => {
+                    dispatch(success(task));
+                },
+                error => {
+                    dispatch(failure(error));
+                    dispatch(AlertActions.error(error));
+                }
+            );
+    };
+
+    function success(task) { return { type: TaskConstants.CREATED_SUCCESS, task } }
+    function failure(error) { return { type: TaskConstants.CREATED_FAILURE, error } }
+}
+
+
+function remove(task) {
+    return dispatch => {
+        TaskService.remove(task)
             .then(
                 task => {
                     dispatch(success(task));

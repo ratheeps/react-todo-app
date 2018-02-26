@@ -37,7 +37,7 @@ export default class ToDoListItem extends React.Component {
             return (
                 <td>
                     <form onSubmit={this.editTask.bind(this)}>
-                        <input ref="task" defaultValue={task} autoFocus />
+                        <input ref="task" defaultValue={task.description} autoFocus />
                     </form>
                 </td>
             );
@@ -79,7 +79,8 @@ export default class ToDoListItem extends React.Component {
     }
 
     editTask (e) {
-        this.props.editTask(this.props.id, this.refs.task.value);
+        let task = this.props.description = this.refs.task.value;
+        this.props.editTask(task);
         this.setState({
             isEditing: false
         });
@@ -87,6 +88,6 @@ export default class ToDoListItem extends React.Component {
     }
 
     deleteTask () {
-        this.props.deleteTask(this.props.id);
+        this.props.deleteTask(this.props);
     }
 }
