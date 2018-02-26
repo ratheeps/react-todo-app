@@ -64,7 +64,7 @@ class ToDoPage extends React.Component {
                     createTask={this.createTask.bind(this)}
                 />
                 <ToDoList
-                    tasks={this.props.tasks}
+                    tasks={this.props.tasks.all}
                     toggleTask={this.toggleTask.bind(this)}
                     editTask={this.editTask.bind(this)}
                     deleteTask={this.deleteTask.bind(this)}
@@ -74,7 +74,7 @@ class ToDoPage extends React.Component {
     }
 
     createTask(task) {
-        this.props.createTask(task);
+        this.props.createTask({description : task});
     }
 
     toggleTask(taskId) {

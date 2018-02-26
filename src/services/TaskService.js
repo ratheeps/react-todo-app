@@ -32,9 +32,7 @@ function create(task) {
     const requestOptions = {
         method: 'POST',
         headers: authHeader,
-        body: JSON.stringify({
-            description : task,
-        })
+        body: JSON.stringify(task)
     };
     return fetch(taskUrl, requestOptions).then((response) => response.json())
         .then((responseJson) => {

@@ -43,6 +43,6 @@ function create(task) {
             );
     };
 
-    function success(tasks) { return { type: TaskConstants.CREATED_SUCCESS, tasks } }
+    function success(task) { return { type: TaskConstants.CREATED_SUCCESS, task } }
     function failure(error) { return { type: TaskConstants.CREATED_FAILURE, error } }
 }
