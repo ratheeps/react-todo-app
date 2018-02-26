@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Pacifico');
 
 .todo.container{
-    padding-left: 20%;
-    padding-right: 20%;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .todo h1 {
@@ -10,13 +13,13 @@
     color: #CDDC39;
 }
 
-.todo input, button {
-    padding: 0.5em;
+.todo input {
+    padding: 10px;
     margin: 2px;
     display: inline-block;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.19);
 }
-.todo input, button, div#app {
+.todo input, button {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 .todo input {
@@ -28,8 +31,10 @@
     background: #16a085;
     color: #fff;
     border: none;
-    /*padding: 0.7em;*/
+    padding: 5px;
+    font-size: 14px;
     border-radius: 3px;
+    margin: 2px;
 }
 
 .todo button:last-of-type {
@@ -49,12 +54,19 @@
     text-align: left;
 }
 
+.todo tr {
+    margin: 2px;
+    border: 1px #ecf0f1 solid;
+}
+
 .todo th, td {
-    padding: 1px 1px;
+    background-color: #ecf0f1;
+    padding: 1px 5px;
 }
 
 .todo table {
     width: 100%;
+    border-collapse: collapse;
 }
 
 .todo .title{
@@ -75,9 +87,13 @@
 }
 
 .todo form.create-todo-form input {
-    width: calc(100% - 50px);
+    width: calc(100% - 85px);
 }
 
+.todo form.create-todo-form button{
+    padding: 11px;
+    font-size: 16px;
+}
 
 .todo tr.todo-not-completed td:first-of-type {
     color: black;
