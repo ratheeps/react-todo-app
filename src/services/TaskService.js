@@ -7,7 +7,7 @@ export const TaskService = {
 
 function index() {
     const requestOptions = {
-        method: 'POST',
+        method: 'GET',
         headers: authHeader,
     };
     let AppUrl = API_URL + '/api/tasks';

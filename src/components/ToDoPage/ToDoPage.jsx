@@ -4,53 +4,56 @@ import CreateToDo from "./CreateToDo";
 import style from "./style.css";
 import {connect} from 'react-redux';
 import {TaskActions, UserActions} from '../../actions';
-const todos = {
+
+const task = {
     items: [],
-    lsKey: "todos",
-    populate () {
+    lsKey: "tasks",
+    populate() {
         this.items = this.get();
     },
-    get () {
+    get() {
         try {
             return JSON.parse(localStorage.getItem(this.lsKey)) || []
-        } catch (e) {}
+        } catch (e) {
+        }
         return [];
     },
-    save () {
+    save() {
         localStorage.setItem(this.lsKey, JSON.stringify(this.items));
     },
-    toggle (id) {
+    toggle(id) {
         let todoItem = this.items[id];
         todoItem.isCompleted = !todoItem.isCompleted;
         this.save();
     },
-    add (obj) {
+    add(obj) {
         this.items.push(obj);
         this.save();
     },
-    remove (id) {
+    remove(id) {
         this.items.splice(id, 1);
         this.save();
     },
-    update (id, task) {
+    update(id, task) {
         let todoItem = this.items[id];
         todoItem.task = task;
         this.save();
     }
 };
 
-todos.populate();
+task.populate();
 
 
 class ToDoPage extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.props.dispatch(TaskActions.index());
         this.state = {
-            todos: todos.items
+            tasks: task.items
         };
     }
-    render () {
+
+    render() {
         return (
             <div className="todo container">
                 <h1>TODOs</h1>
@@ -58,7 +61,7 @@ class ToDoPage extends React.Component {
                     createTask={this.createTask.bind(this)}
                 />
                 <ToDoList
-                    todos={this.state.todos}
+                    todos={this.state.tasks}
                     toggleTask={this.toggleTask.bind(this)}
                     editTask={this.editTask.bind(this)}
                     deleteTask={this.deleteTask.bind(this)}
@@ -67,27 +70,31 @@ class ToDoPage extends React.Component {
         );
     }
 
-    createTask (task) {
+    createTask(task) {
         task = task.trim();
-        if (!task) { return; }
-        todos.add({
+        if (!task) {
+            return;
+        }
+        task.add({
             task,
             isCompleted: false
         });
-        this.setState({ todos: this.state.todos });
+        this.setState({tasks: this.state.tasks});
     }
 
-    toggleTask (taskId) {
-        todos.toggle(taskId);
-        this.setState({ todos: this.state.todos });
+    toggleTask(taskId) {
+        task.toggle(taskId);
+        this.setState({tasks: this.state.tasks});
     }
-    editTask (taskId, task) {
-        todos.update(taskId, task);
-        this.setState({ todos: this.state.todos });
+
+    editTask(taskId, task) {
+        task.update(taskId, task);
+        this.setState({tasks: this.state.tasks});
     }
-    deleteTask (taskId) {
-        todos.remove(taskId);
-        this.setState({ todos: this.state.todos });
+
+    deleteTask(taskId) {
+        task.remove(taskId);
+        this.setState({tasks: this.state.tasks});
     }
 }
 
