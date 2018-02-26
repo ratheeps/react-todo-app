@@ -32,6 +32,7 @@ class App extends React.Component {
                             <div>
                                 <PrivateRoute exact path="/" component={ToDoPage}/>
                                 <Route path="/login" component={LoginPage}/>
+                                <Route path="/tasks" component={ToDoPage}/>
                             </div>
                         </Router>
                     </div>

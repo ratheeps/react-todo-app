@@ -12,12 +12,11 @@ export const TaskActions = {
 
 function index() {
     return dispatch => {
-        dispatch(request());
+        // dispatch(request());
         TaskService.index()
             .then(
                 tasks => {
                     dispatch(success(tasks));
-                    history.push('/');
                 },
                 error => {
                     dispatch(failure(error));

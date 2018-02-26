@@ -52,7 +52,7 @@ class ToDoPage extends React.Component {
     }
     render () {
         return (
-            <div className="container">
+            <div className="todo container">
                 <h1>TODOs</h1>
                 <CreateToDo
                     createTask={this.createTask.bind(this)}

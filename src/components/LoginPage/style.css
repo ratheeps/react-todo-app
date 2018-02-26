@@ -3,7 +3,7 @@ body {
     background: #009688;
 }
 
-.form{
+.login-form{
     margin: auto;
     width: 250px;
     position: relative;
@@ -13,12 +13,12 @@ body {
     padding: 5px 20px 20px 20px;
 }
 
-.form .title{
+.login-form .title{
     text-align: center;
     font-size: 35px;
 }
 
-.form input{
+.login-form input{
     width: 230px;
     height: 25px;
     margin: 2px;
@@ -29,12 +29,12 @@ body {
     border-radius: 4px;
 }
 
-.form input:focus{
+.login-form input:focus{
     border: none;
     background-color: #ecf0f1;
 }
 
-.form button{
+.login-form button{
     width: 240px;
     height: 30px;
     margin: 2px;
@@ -45,16 +45,16 @@ body {
     border: none;
 }
 
-.form button:hover{
+.login-form button:hover{
     background-color: #009688;
 }
 
-.form .help-block{
+.login-form .help-block{
     color: deeppink;
     padding-left: 5px;
 }
 
-.form .has-error input{
+.login-form .has-error input{
     border: 1px deeppink solid;
     color: deeppink;
 }

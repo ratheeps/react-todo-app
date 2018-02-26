@@ -40,7 +40,7 @@ class LoginPage extends React.Component {
         const {loggingIn} = this.props;
         const {username, password, submitted} = this.state;
         return (
-            <div className="form">
+            <div className="login-form">
                 <h2 className="title">Login</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={(submitted && !username ? ' has-error' : '')}>
