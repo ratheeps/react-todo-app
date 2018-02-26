@@ -27,7 +27,8 @@ export default class ToDoListItem extends React.Component {
     }
 
     renderTask () {
-        const { task, isCompleted } = this.props;
+        const task = this.props;
+        const isCompleted = task.status === 'Completed';
         const taskStyle = {
             cursor: "pointer"
         };
@@ -41,7 +42,6 @@ export default class ToDoListItem extends React.Component {
                 </td>
             );
         }
-
         return (
             <td style={taskStyle}>
                 <div className="toggle">
@@ -51,9 +51,9 @@ export default class ToDoListItem extends React.Component {
                         checked={isCompleted}
                         className="successCheck"
                         onChange={this.toggleTask.bind(this)} />
-                    <label></label>
+                    <label> </label>
                 </div>
-                <p className="title">{task}</p>
+                <p className="title">{task.description}</p>
             </td>
         );
     }

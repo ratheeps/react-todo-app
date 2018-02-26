@@ -3,7 +3,7 @@ import ToDoListItem from "./ToDoListItem";
 
 export default class ToDoList extends React.Component {
     renderItems () {
-        return this.props.todos.map((c, index) => {
+        return this.props.tasks.map((c, index) => {
             return (
                 <ToDoListItem
                     key={index}
@@ -17,7 +17,7 @@ export default class ToDoList extends React.Component {
         });
     }
     render () {
-        if (!this.props.todos.length) {
+        if (!this.props.tasks.length) {
             return <p className="first-todo">Create your first todo! :)</p>;
         }
         return (

@@ -3,7 +3,7 @@ import ToDoList from "./ToDoList"
 import CreateToDo from "./CreateToDo";
 import style from "./style.css";
 import {connect} from 'react-redux';
-import {TaskActions, UserActions} from '../../actions';
+import {TaskActions} from '../../actions';
 
 const task = {
     items: [],
@@ -41,16 +41,19 @@ const task = {
     }
 };
 
-task.populate();
+// task.populate();
 
 
 class ToDoPage extends React.Component {
     constructor(props) {
         super(props);
-        this.props.dispatch(TaskActions.index());
         this.state = {
-            tasks: task.items
+            tasks : {}
         };
+    }
+
+    componentDidMount() {
+        this.props.loadTasks();
     }
 
     render() {
@@ -61,7 +64,7 @@ class ToDoPage extends React.Component {
                     createTask={this.createTask.bind(this)}
                 />
                 <ToDoList
-                    todos={this.state.tasks}
+                    tasks={this.props.tasks}
                     toggleTask={this.toggleTask.bind(this)}
                     editTask={this.editTask.bind(this)}
                     deleteTask={this.deleteTask.bind(this)}
@@ -100,11 +103,16 @@ class ToDoPage extends React.Component {
 
 
 function mapStateToProps(state) {
-    const {tasks} = state.tasks;
     return {
-        tasks
+        tasks : state.tasks
     };
 }
 
-const connectedToDoPage = connect(mapStateToProps)(ToDoPage);
+const mapDispatchToProps = (dispatch) => ({
+    loadTasks() {
+        return dispatch(TaskActions.index());
+    }
+});
+
+const connectedToDoPage = connect(mapStateToProps, mapDispatchToProps)(ToDoPage);
 export {connectedToDoPage as ToDoPage};
