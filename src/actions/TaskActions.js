@@ -1,7 +1,7 @@
 import { TaskConstants } from '../constants';
 import { TaskService } from '../services';
 import { AlertActions } from './AlertActions';
-import { history } from '../helpers';
+// import { history } from '../helpers';
 
 export const TaskActions = {
     index,

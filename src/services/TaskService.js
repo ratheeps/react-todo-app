@@ -1,4 +1,4 @@
-import {API_URL, CLIENT_ID, CLIENT_SECRET, GRAND_TYPE} from '../config';
+import {API_URL} from '../config';
 // import {authHeader} from '../helpers';
 
 export const TaskService = {

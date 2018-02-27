@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {UserActions} from '../../actions';
 import style from "./style.css";
@@ -37,7 +36,7 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        const {loggingIn} = this.props;
+        // const {loggingIn} = this.props;
         const {username, password, submitted} = this.state;
         return (
             <div className="login-form">
