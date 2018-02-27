@@ -13,7 +13,7 @@ export const TaskActions = {
 function index() {
     return dispatch => {
         // dispatch(request());
-        TaskService.index()
+        return TaskService.index()
             .then(
                 tasks => {
                     if (tasks.error){
@@ -40,7 +40,7 @@ function index() {
 
 function create(task) {
     return dispatch => {
-        TaskService.create(task)
+        return TaskService.create(task)
             .then(
                 task => {
                     if (task.errors){
@@ -72,7 +72,7 @@ function create(task) {
 
 function remove(task) {
     return dispatch => {
-        TaskService.remove(task)
+        return TaskService.remove(task)
             .then(
                 task => {
                     if (task.errors){
@@ -104,7 +104,7 @@ function remove(task) {
 
 function update(id, values) {
     return dispatch => {
-        TaskService.update(id, values)
+        return TaskService.update(id, values)
             .then(
                 task => {
                     if (task.errors){

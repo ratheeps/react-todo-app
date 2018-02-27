@@ -11,17 +11,22 @@ class ToDoPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tasks : {}
+            tasks : {},
+            isLoading : false
         };
     }
 
     componentDidMount() {
-        this.props.loadTasks();
+        this.setState({isLoading: true});
+        this.props.loadTasks().then(() => {
+            this.setState({isLoading: false});
+        });
     }
 
     render() {
         return (
             <div className="todo container">
+                { this.loader() }
                 <h1>TODOs</h1>
                 <CreateToDo
                     createTask={this.createTask.bind(this)}
@@ -36,8 +41,23 @@ class ToDoPage extends React.Component {
         );
     }
 
+    loader(){
+        if (this.state.isLoading){
+            return (
+                <div id="loading-wrapper" >
+                    <div id="loading-text">LOADING</div>
+                    <div id="loading-content"></div>
+                </div>
+            )
+        }
+        return '';
+    }
+
     createTask(task) {
-        this.props.createTask({description : task});
+        this.setState({isLoading: true});
+        this.props.createTask({description : task}).then(() =>{
+            this.setState({isLoading: false});
+        });
     }
 
     toggleTask(task) {
@@ -49,7 +69,10 @@ class ToDoPage extends React.Component {
             note : task.note,
             priority : task.priority,
         };
-        this.props.updateTask(id, value);
+        this.setState({isLoading: true});
+        this.props.updateTask(id, value).then(() => {
+            this.setState({isLoading: false});
+        });
     }
 
     editTask(task, newValue) {
@@ -60,11 +83,17 @@ class ToDoPage extends React.Component {
             note : task.note,
             priority : task.priority,
         };
-        this.props.updateTask(id, value);
+        this.setState({isLoading: true});
+        this.props.updateTask(id, value).then(() => {
+            this.setState({isLoading: false});
+        });
     }
 
     deleteTask(task) {
-        this.props.deleteTask(task);
+        this.setState({isLoading: true});
+        this.props.deleteTask(task).then(()=>{
+            this.setState({isLoading: false});
+        });
     }
 }
 
