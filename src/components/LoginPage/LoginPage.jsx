@@ -33,7 +33,7 @@ class LoginPage extends React.Component {
             this.setState({isLoading: true});
             this.props.logIn(username, password).then(() => {
                 this.setState({isLoading: false});
-                // history.push('/tasks');
+                history.push('/tasks');
             }).catch(() => {
                 this.setState({isLoading: false});
             });

@@ -1,6 +1,7 @@
 import { UserConstants } from '../constants';
 import { UserService } from '../services';
 import { AlertActions } from './AlertActions';
+import {history} from "../helpers";
 
 export const UserActions = {
     login,
@@ -40,5 +41,6 @@ function login(username, password) {
 
 function logout() {
     UserService.logout();
+    history.push('/login');
     return { type: UserConstants.LOGOUT };
 }
