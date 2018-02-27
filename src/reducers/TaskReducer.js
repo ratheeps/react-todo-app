@@ -23,6 +23,17 @@ export function tasks(state = initialState, action) {
                 ...state,
                 all: state.all,
             };
+        case TaskConstants.DELETED_FAILURE:
+            return state;
+        case TaskConstants.DELETE_REQUEST:
+            return state;
+        case TaskConstants.DELETED_SUCCESS:
+            let taskIndex = state.all.findIndex(task => task.id === action.task.id);
+            state.all.splice(taskIndex, 1);
+            return {
+                ...state,
+                all: state.all,
+            };
         case TaskConstants.CREATED_FAILURE:
             return state;
         default:

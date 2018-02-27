@@ -62,6 +62,6 @@ function remove(task) {
             );
     };
 
-    function success(task) { return { type: TaskConstants.CREATED_SUCCESS, task } }
-    function failure(error) { return { type: TaskConstants.CREATED_FAILURE, error } }
+    function success(task) { return { type: TaskConstants.DELETED_SUCCESS, task } }
+    function failure(error) { return { type: TaskConstants.DELETED_FAILURE, error } }
 }

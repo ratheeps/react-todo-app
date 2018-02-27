@@ -6,9 +6,9 @@ export default class ToDoList extends React.Component {
         return this.props.tasks.map((c, index) => {
             return (
                 <ToDoListItem
-                    key={index}
+                    key={c.id}
                     {...c}
-                    id={index}
+                    id={c.id}
                     toggleTask={this.props.toggleTask}
                     editTask={this.props.editTask}
                     deleteTask={this.props.deleteTask}
