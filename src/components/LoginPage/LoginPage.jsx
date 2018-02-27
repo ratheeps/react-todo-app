@@ -33,7 +33,9 @@ class LoginPage extends React.Component {
             this.setState({isLoading: true});
             this.props.logIn(username, password).then(() => {
                 this.setState({isLoading: false});
-                history.push('/tasks');
+                setTimeout(()=>{
+                    history.push('/tasks');
+                }, 200);
             }).catch(() => {
                 this.setState({isLoading: false});
             });

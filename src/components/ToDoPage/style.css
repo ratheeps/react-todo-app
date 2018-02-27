@@ -5,7 +5,7 @@
     margin-right: 20%;
     background-color: #ffffff;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .todo h1 {
@@ -56,11 +56,11 @@
 
 .todo tr {
     margin: 2px;
-    border: 1px #ecf0f1 solid;
+    /*border: 1px #ecf0f1 solid;*/
 }
 
 .todo th, td {
-    background-color: #ecf0f1;
+    /*background-color: #ecf0f1;*/
     padding: 1px 5px;
 }
 
