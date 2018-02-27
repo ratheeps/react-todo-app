@@ -6,7 +6,7 @@ import { history } from '../helpers';
 export const TaskActions = {
     index,
     create,
-    // update,
+    update,
     remove,
 };
 
@@ -65,3 +65,23 @@ function remove(task) {
     function success(task) { return { type: TaskConstants.DELETED_SUCCESS, task } }
     function failure(error) { return { type: TaskConstants.DELETED_FAILURE, error } }
 }
+
+
+function update(id, values) {
+    return dispatch => {
+        TaskService.update(id, values)
+            .then(
+                task => {
+                    dispatch(success(task));
+                },
+                error => {
+                    dispatch(failure(error));
+                    dispatch(AlertActions.error(error));
+                }
+            );
+    };
+
+    function success(task) { return { type: TaskConstants.UPDATED_SUCCESS, task } }
+    function failure(error) { return { type: TaskConstants.UPDATED_FAILURE, error } }
+}
+

@@ -79,8 +79,10 @@ export default class ToDoListItem extends React.Component {
     }
 
     editTask (e) {
-        let task = this.props.description = this.refs.task.value;
-        this.props.editTask(task);
+        let task = {
+          description : this.refs.task.value
+        };
+        this.props.editTask(this.props, task);
         this.setState({
             isEditing: false
         });

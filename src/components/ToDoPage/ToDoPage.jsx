@@ -82,13 +82,18 @@ class ToDoPage extends React.Component {
         this.setState({tasks: this.state.tasks});
     }
 
-    editTask(taskId, task) {
-        task.update(taskId, task);
-        this.setState({tasks: this.state.tasks});
+    editTask(task, newValue) {
+        let id = task.id;
+        let value = {
+            description : newValue.description,
+            status : task.status,
+            note : task.note,
+            priority : task.priority,
+        };
+        this.props.updateTask(id, value);
     }
 
-    deleteTask(task, a) {
-        console.log(task, a);
+    deleteTask(task) {
         this.props.deleteTask(task);
     }
 }
@@ -109,6 +114,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     deleteTask(task) {
         return dispatch(TaskActions.remove(task))
+    },
+    updateTask(id, values) {
+        return dispatch(TaskActions.update(id, values))
     }
 });
 
