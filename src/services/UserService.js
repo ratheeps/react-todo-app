@@ -16,7 +16,7 @@ function login(username, password) {
             client_secret : CLIENT_SECRET,
         })
     };
-    let AppUrl = API_URL+'/oauth/token';
+    let AppUrl = API_URL+'oauth/token';
     return fetch(AppUrl, requestOptions)
         .then(response => {
             if (!response && !response.access_token) {
@@ -29,6 +29,8 @@ function login(username, password) {
                 localStorage.setItem('uid', response.access_token);
             }
             return response;
+        }).catch((error) => {
+            return Promise.reject(error);
         });
 }
 

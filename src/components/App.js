@@ -7,6 +7,7 @@ import {AlertActions} from '../actions';
 import {PrivateRoute} from './PrivateRoute';
 import {ToDoPage} from './ToDoPage';
 import {LoginPage} from './LoginPage';
+import style from "./style.css";
 
 class App extends React.Component {
     constructor(props) {
@@ -25,8 +26,8 @@ class App extends React.Component {
             <div className="jumbotron">
                 <div className="container">
                     <div className="col-sm-8 col-sm-offset-2">
-                        {alert && alert.message &&
-                        <div className={`alert ${alert.type}`}>{alert.message}</div>
+                        {alert && alert.message && alert.message.message &&
+                        <div className={`alert ${alert.type}`}>{alert.message.message}</div>
                         }
                         <Router history={history}>
                             <div>
@@ -44,6 +45,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
     const {alert} = state;
+    console.log(alert);
     return {
         alert
     };

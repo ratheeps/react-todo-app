@@ -2,13 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {UserActions} from '../../actions';
 import style from "./style.css";
+import { history } from '../../helpers';
+import { withRouter } from 'react-router-dom';
+
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
-
-        // reset login status
-        this.props.dispatch(UserActions.logout());
-
         this.state = {
             username: '',
             password: '',
@@ -29,14 +28,18 @@ class LoginPage extends React.Component {
 
         this.setState({submitted: true});
         const {username, password} = this.state;
-        const {dispatch} = this.props;
         if (username && password) {
-            dispatch(UserActions.login(username, password));
+            this.props.logIn(username, password).then(function () {
+                history.push('/tasks');
+            });
         }
     }
 
+    logOut(){
+        this.props.logOut();
+    }
+
     render() {
-        // const {loggingIn} = this.props;
         const {username, password, submitted} = this.state;
         return (
             <div className="login-form">
@@ -66,5 +69,14 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedLoginPage = connect(mapStateToProps)(LoginPage);
+const mapDispatchToProps = (dispatch) =>({
+    logIn(username, password) {
+        return dispatch(UserActions.login(username, password))
+    },
+    logOut(){
+        return dispatch(UserActions.logout())
+    }
+});
+
+const connectedLoginPage = withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginPage));
 export {connectedLoginPage as LoginPage};

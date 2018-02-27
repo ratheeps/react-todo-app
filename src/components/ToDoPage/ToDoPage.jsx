@@ -4,6 +4,7 @@ import CreateToDo from "./CreateToDo";
 import style from "./style.css";
 import {connect} from 'react-redux';
 import {TaskActions} from '../../actions';
+import { withRouter } from 'react-router-dom';
 
 
 class ToDoPage extends React.Component {
@@ -89,5 +90,5 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-const connectedToDoPage = connect(mapStateToProps, mapDispatchToProps)(ToDoPage);
+const connectedToDoPage = withRouter(connect(mapStateToProps, mapDispatchToProps)(ToDoPage));
 export {connectedToDoPage as ToDoPage};

@@ -16,11 +16,20 @@ function index() {
         TaskService.index()
             .then(
                 tasks => {
-                    dispatch(success(tasks));
+                    if (tasks.error){
+                        let error = tasks;
+                        dispatch(failure(error));
+                        dispatch(AlertActions.error(error));
+                    }else{
+                        dispatch(success(tasks));
+                    }
+
                 },
                 error => {
                     dispatch(failure(error));
-                    dispatch(AlertActions.error(error));
+                    dispatch(AlertActions.error({
+                        message : 'Something wrong!',
+                    }));
                 }
             );
     };
@@ -34,11 +43,24 @@ function create(task) {
         TaskService.create(task)
             .then(
                 task => {
-                    dispatch(success(task));
+                    if (task.errors){
+                        let error = {
+                            message : task.errors.description[0],
+                        };
+                        dispatch(failure(error));
+                        dispatch(AlertActions.error(error));
+                    }else {
+                        dispatch(success(task));
+                        dispatch(AlertActions.success({
+                            message : 'Task created success',
+                        }));
+                    }
                 },
                 error => {
                     dispatch(failure(error));
-                    dispatch(AlertActions.error(error));
+                    dispatch(AlertActions.error({
+                        message : 'Something wrong!',
+                    }));
                 }
             );
     };
@@ -53,11 +75,24 @@ function remove(task) {
         TaskService.remove(task)
             .then(
                 task => {
-                    dispatch(success(task));
+                    if (task.errors){
+                        let error = {
+                            message : task.errors.description[0],
+                        };
+                        dispatch(failure(error));
+                        dispatch(AlertActions.error(error));
+                    }else {
+                        dispatch(success(task));
+                        dispatch(AlertActions.success({
+                            message : 'Task deleted success',
+                        }));
+                    }
                 },
                 error => {
                     dispatch(failure(error));
-                    dispatch(AlertActions.error(error));
+                    dispatch(AlertActions.error({
+                        message : 'Something wrong!',
+                    }));
                 }
             );
     };
@@ -72,11 +107,24 @@ function update(id, values) {
         TaskService.update(id, values)
             .then(
                 task => {
-                    dispatch(success(task));
+                    if (task.errors){
+                        let error = {
+                            message : task.errors.description[0],
+                        };
+                        dispatch(failure(error));
+                        dispatch(AlertActions.error(error));
+                    }else {
+                        dispatch(success(task));
+                        dispatch(AlertActions.success({
+                            message : 'Task updated success',
+                        }));
+                    }
                 },
                 error => {
                     dispatch(failure(error));
-                    dispatch(AlertActions.error(error));
+                    dispatch(AlertActions.error({
+                        message : 'Something wrong!',
+                    }));
                 }
             );
     };
