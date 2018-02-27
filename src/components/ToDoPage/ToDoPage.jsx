@@ -46,9 +46,9 @@ class ToDoPage extends React.Component {
     loader(){
         if (this.state.isLoading){
             return (
-                <div id="loading-wrapper" >
-                    <div id="loading-text">LOADING</div>
-                    <div id="loading-content"></div>
+                <div className="loading-wrapper" >
+                    <div className="loading-text">LOADING</div>
+                    <div className="loading-content"></div>
                 </div>
             )
         }
