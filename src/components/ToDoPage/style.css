@@ -97,12 +97,12 @@
     font-size: 16px;
 }
 
-.todo tr.todo-not-completed td:first-of-type {
+.todo tr.todo-not-completed td:first-of-type p.title {
     color: black;
 }
 
-.todo tr.todo-completed td:first-of-type {
-    color: #1abc9c;
+.todo tr.todo-completed td:first-of-type p.title{
+    color: #16a085;
 }
 
 .todo tr > td:first-of-type {

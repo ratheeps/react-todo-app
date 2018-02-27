@@ -44,7 +44,7 @@ export default class ToDoListItem extends React.Component {
         }
         return (
             <td style={taskStyle}>
-                <div className="toggle">
+                <div className="toggle" onClick={this.toggleTask.bind(this)}>
                     <input
                         name="isSuccess"
                         type="checkbox"
@@ -59,7 +59,7 @@ export default class ToDoListItem extends React.Component {
     }
 
     render () {
-        const { isCompleted } = this.props;
+        const  isCompleted  = this.props.status === 'Completed';
         return (
             <tr className={"todo-" + (isCompleted ? "completed" : "not-completed") }>
                 {this.renderTask()}
@@ -75,7 +75,7 @@ export default class ToDoListItem extends React.Component {
     }
 
     toggleTask () {
-        this.props.toggleTask(this.props.id);
+        this.props.toggleTask(this.props);
     }
 
     editTask (e) {
