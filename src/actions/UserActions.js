@@ -13,7 +13,7 @@ function login(username, password) {
         return UserService.login(username, password)
             .then(
                 user => {
-                    if (user.error){
+                    if (user.message || user.error){
                         let error = user;
                         dispatch(failure(error));
                         dispatch(AlertActions.error(error));

@@ -157,3 +157,7 @@
     text-align: center;
     background-color: #888;
 }
+
+.clear-fix{
+    clear: both;
+}

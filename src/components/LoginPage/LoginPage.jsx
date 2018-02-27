@@ -11,7 +11,8 @@ class LoginPage extends React.Component {
         this.state = {
             username: '',
             password: '',
-            submitted: false
+            submitted: false,
+            isLoading : false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -29,8 +30,12 @@ class LoginPage extends React.Component {
         this.setState({submitted: true});
         const {username, password} = this.state;
         if (username && password) {
-            this.props.logIn(username, password).then(function () {
+            this.setState({isLoading: true});
+            this.props.logIn(username, password).then(() => {
+                this.setState({isLoading: false});
                 history.push('/tasks');
+            }).catch(() => {
+                this.setState({isLoading: false});
             });
         }
     }
@@ -43,6 +48,7 @@ class LoginPage extends React.Component {
         const {username, password, submitted} = this.state;
         return (
             <div className="login-form">
+                { this.loader() }
                 <h2 className="title">Login</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={(submitted && !username ? ' has-error' : '')}>
@@ -59,6 +65,18 @@ class LoginPage extends React.Component {
                 </form>
             </div>
         );
+    }
+
+    loader(){
+        if (this.state.isLoading){
+            return (
+                <div id="loading-wrapper" >
+                    <div id="loading-text">LOADING</div>
+                    <div id="loading-content"></div>
+                </div>
+            )
+        }
+        return '';
     }
 }
 

@@ -3,7 +3,7 @@ import ToDoList from "./ToDoList"
 import CreateToDo from "./CreateToDo";
 import style from "./style.css";
 import {connect} from 'react-redux';
-import {TaskActions} from '../../actions';
+import {TaskActions, UserActions} from '../../actions';
 import { withRouter } from 'react-router-dom';
 
 
@@ -27,7 +27,9 @@ class ToDoPage extends React.Component {
         return (
             <div className="todo container">
                 { this.loader() }
-                <h1>TODOs</h1>
+                <h1 className="left">TODOs</h1>
+                <h4 className="right" onClick={this.logout.bind(this)}>Logout</h4>
+                <div className="clear-fix"></div>
                 <CreateToDo
                     createTask={this.createTask.bind(this)}
                 />
@@ -95,6 +97,11 @@ class ToDoPage extends React.Component {
             this.setState({isLoading: false});
         });
     }
+
+    logout(){
+        this.setState({isLoading: true});
+        this.props.logOut();
+    }
 }
 
 
@@ -116,6 +123,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     updateTask(id, values) {
         return dispatch(TaskActions.update(id, values))
+    },
+    logOut(){
+        return dispatch(UserActions.logout())
     }
 });
 
